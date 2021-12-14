@@ -13,14 +13,13 @@ RUN npm install
 
 RUN npm run build
 
-RUN mv build /app
+RUN mv build /app/public/
 
 WORKDIR /app
 RUN rm -rf front-end
 
 # Copy and assemble back end
-RUN mkdir -p /app/back-end
-WORKDIR /app/back-end
+WORKDIR /app
 
 COPY ./back-end/package.json .
 COPY ./back-end/package-lock.json .
@@ -28,7 +27,6 @@ COPY ./back-end/package-lock.json .
 RUN npm install
 
 COPY ./back-end/app.js .
-RUN mv /app/build /app/back-end/public
 
 ENV PORT=80
 EXPOSE 80
