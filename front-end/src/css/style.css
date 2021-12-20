@@ -6,7 +6,7 @@ body {
 }
 
 .middle {
-  width: 25em;
+  max-width: 25em;
 }
 
 form {
