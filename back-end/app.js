@@ -181,5 +181,3 @@ wsServer.on("connection", (ws, req) => {
     }
   });
 });
-
-exports = { app };
