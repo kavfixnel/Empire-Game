@@ -4,5 +4,5 @@ services:
     build: .
     restart: unless-stopped
     ports:
-      - ${PORT}:3000
+      - 58320:3000
     
