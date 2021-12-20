@@ -9,7 +9,9 @@ const QuestionAndAnswers = ({ gameId }) => {
 
     console.log("connecting to socket" + gameId);
 
-    let ws = new WebSocket(`ws://localhost:3001/api/ws?gameId=${gameId}`);
+    let ws = new WebSocket(
+      `ws://${window.location.host}/api/ws?gameId=${gameId}`
+    );
     ws.onmessage = (data) => {
       let message = JSON.parse(data.data);
 
