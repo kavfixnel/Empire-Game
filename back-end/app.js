@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const QRCode = require("qrcode");
 const WebSocket = require("ws");
@@ -12,8 +13,6 @@ var cache = new Cache({
 });
 
 const wsServer = new WebSocket.Server({ noServer: true });
-
-app.use(express.static("public", { extensions: ["html"] }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -131,9 +130,20 @@ app.get("/api/allAnswers", (req, res) => {
   res.json(game.answers);
 });
 
-const server = app.listen(process.env.PORT || 3000, () =>
-  console.log(`Listening on port ${process.env.PORT || 3000}`)
-);
+app.use((req, res, next) => {
+  if (/\.[A-za-z]{2,3}$|\?/i.test(req.path)) {
+    next();
+  } else {
+    res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
+    res.header("Expires", "-1");
+    res.header("Pragma", "no-cache");
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+  }
+});
+
+app.use(express.static(path.join(__dirname, "public")));
+
+const server = app.listen(3000);
 
 server.on("upgrade", (request, socket, head) => {
   wsServer.handleUpgrade(request, socket, head, (socket) => {

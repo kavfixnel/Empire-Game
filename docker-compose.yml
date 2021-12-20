@@ -1,0 +1,8 @@
+version: '3'
+services:
+  oneEmpire:
+    build: .
+    restart: unless-stopped
+    ports:
+      - ${PORT}:3000
+    
