@@ -28,3 +28,39 @@ The winner of the game is the head of the last Empire remaining Empire.
 
 ## Deploying the game engine
 
+## Development
+
+In order to spin up a development environment on the engine, we can simply use `docker compose` to
+configure all neccessary components
+
+```bash
+~/Empire ❯ docker compose -f docker-compose.dev.yml up
+[+] Running 2/0
+ ⠿ Container back-end   Created                                                                                                                        0.0s
+ ⠿ Container front-end  Created                                                                                                                        0.0s
+Attaching to back-end, front-end
+back-end   | 
+back-end   | > empire-v2-backend@1.0.0 start
+back-end   | > node src/app.js
+back-end   | 
+front-end  | 
+front-end  | > front-end@0.1.0 start
+front-end  | > react-scripts --openssl-legacy-provider start
+front-end  | 
+front-end  | ℹ ｢wds｣: Project is running at http://172.20.0.3/
+front-end  | ℹ ｢wds｣: webpack output is served from 
+front-end  | ℹ ｢wds｣: Content not from webpack is served from /app/public
+front-end  | ℹ ｢wds｣: 404s will fallback to /
+front-end  | Starting the development server...
+front-end  | 
+front-end  | Compiled successfully!
+front-end  | 
+front-end  | You can now view front-end in the browser.
+front-end  | 
+front-end  |   Local:            http://localhost:3000
+front-end  |   On Your Network:  http://172.20.0.3:3000
+front-end  | 
+front-end  | Note that the development build is not optimized.
+front-end  | To create a production build, use npm run build.
+front-end  | 
+```
