@@ -1,8 +1,0 @@
-version: '3'
-services:
-  empirev2:
-    build: .
-    restart: unless-stopped
-    ports:
-      - 58320:3000
-    

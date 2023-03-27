@@ -10,7 +10,7 @@ const QuestionAndAnswers = ({ gameId }) => {
     console.log("connecting to socket" + gameId);
 
     let ws = new WebSocket(
-      `ws${location.protocol === "https:" ? "s" : ""}://${
+      `ws${window.location.protocol === "https:" ? "s" : ""}://${
         window.location.host
       }/api/ws?gameId=${gameId}`
     );
